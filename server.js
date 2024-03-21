@@ -9,6 +9,12 @@ const fccTestingRoutes = require('./routes/fcctesting.js');
 const runner = require('./test-runner.js');
 
 const app = express();
+const helmet = require('helmet'); //added
+
+app.use(helmet.hidePoweredBy({setTo: 'PHP 7.4.3'})); //added
+app.use(helmet.noCache()); //added
+app.use(helmet.xssFilter()); //added
+app.use(helmet.noSniff()); //added
 
 app.use('/public', express.static(process.cwd() + '/public'));
 app.use('/assets', express.static(process.cwd() + '/assets'));
